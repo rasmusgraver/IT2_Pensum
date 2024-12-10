@@ -8,5 +8,7 @@ imitation_game = Film("The Imitation Game",
                            "2014-11-28")
 
 print(imitation_game)
+
+# c) Vis antall dager siden premiere
 imitation_game.print_antall_dager()
 
