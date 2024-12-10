@@ -8,30 +8,18 @@ class Film:
         self.produsenter = produsenter # Filmens produsenter
         self.dato = dato # Datoen filmen hadde premiere/ble utgitt
         
-    def finn_dager(self):
+    def print_antall_dager(self):
         # Tar inspirasjon fra følgende kode: https://tecadmin.net/calculate-days-between-two-dates-in-python/
         dato_start = dt.datetime.strptime(self.dato, '%Y-%m-%d')
         i_dag = dt.datetime.today()
-        
-        antall_dager = (i_dag - dato_start).days
-        
+        antall_dager = (i_dag - dato_start).days       
         print(f"Filmen ble utgitt for {antall_dager} dager siden.")
         
         
     def __str__(self):
         utskrift = f'Filmen "{self.tittel}" ble utgitt {self.dato}.\n'
         utskrift += f'Filmen ble regissert av {self.regissor}'
-        utskrift += f' og produsert av'
-        
-        # Formatterer utskrift basert på antall produsenter (ikke nødvendig, men ser litt bedre ut)
-        if len(self.produsenter) == 1:
-            utskrift += f' {self.produsenter[0]}.'
-        else:
-            for i in range(len(self.produsenter)):
-                if i != len(self.produsenter) - 1:
-                    utskrift += f' {self.produsenter[i]},'
-                else:
-                    utskrift += f' {self.produsenter[i]}.'
+        utskrift += f' og produsert av {self.produsenter}'
         
         return utskrift
         
