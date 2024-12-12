@@ -12,7 +12,7 @@ class Film:
         # Tar inspirasjon fra følgende kode: https://tecadmin.net/calculate-days-between-two-dates-in-python/
         dato_start = dt.datetime.strptime(self.dato, '%Y-%m-%d')
         i_dag = dt.datetime.today()
-        antall_dager = (i_dag - dato_start).days       
+        antall_dager = (i_dag - dato_start).days
         print(f"Filmen ble utgitt for {antall_dager} dager siden.")
         
         
