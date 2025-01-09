@@ -28,8 +28,11 @@ while running:
             running = False
 
     # Klokka sørger for rett hastighet (ut i fra FPS):
+    # TEST: Hva skjer om vi fjerner denne linja?
     clock.tick(FPS)
-    screen.fill(WHITE) # Må tegne på en bakgrunnsfarge (SJEKK hva som skjer hvis man dropper denne linja!)
+    # Må tegne på en bakgrunnsfarge
+    # TEST: Hva skjer om vi fjerner denne linja?
+    screen.fill(WHITE) 
 
     # Liten sikkerhetsfunksjon... Så det ikke blir HELT fullt på skjermen, og pygame slutter å svare
     if len(baller) > 1000:
@@ -40,7 +43,7 @@ while running:
     nye_baller = []
     for ball in baller:
         ny_ball = ball.oppdater()
-        if ny_ball:
+        if ny_ball: # Må sjekke om vi fikk en ny ball (eller None hvis ikke - teller som "false")
             nye_baller.append(ny_ball)
 
     # Merge de nye ballene inn sammen med de eksisterende:

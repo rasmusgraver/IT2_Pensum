@@ -10,7 +10,7 @@ class Ball:
         self.radius = radius
         self.x = x
         self.y = y
-        self.dx = dx 
+        self.dx = dx
         self.dy = dy
 
     def tegn(self, screen):
@@ -37,7 +37,7 @@ class Ball:
             ny_dy = self.dy
             ny_dx = -self.dx # Snu x retningen på den nye ballen
 
-        self.flytt_ut_fra_veggen()
+        self.flytt_ut_fra_veggen() # Sørg for at vi ikke blir "stuck" i veggen
 
         if ny_dx or ny_dy:
             # Lag en ny ball, og returner denne
@@ -52,11 +52,11 @@ class Ball:
     def flytt_ut_fra_veggen(self):
         """ Dytt ballen litt ut fra veggen """
         if self.x < self.radius:
-            self.x = self.radius + 1
+            self.x = self.radius
         if self.x > WIDTH - self.radius:
-            self.x = WIDTH - self.radius - 1
+            self.x = WIDTH - self.radius
         if self.y < self.radius:
-            self.y = self.radius + 1
+            self.y = self.radius
         if self.y > HEIGHT - self.radius:
-            self.y = HEIGHT -self.radius - 1
+            self.y = HEIGHT -self.radius
 
