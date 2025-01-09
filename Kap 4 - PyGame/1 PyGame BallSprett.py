@@ -7,7 +7,7 @@ GREEN = (0,255,0)
 BLUE = (0,0,255)
 
 # Definerer størrelsen på pygame-vinduet:
-WIDTH = 300
+WIDTH = 600
 HEIGHT = 500
 SIZE = (WIDTH, HEIGHT)
 
@@ -31,7 +31,10 @@ class Ball:
         self.x = x
         self.y = y
         self.dx = dx 
-        self.dy = dy 
+        self.dy = dy
+
+    def tegn(self, screen):
+        pg.draw.circle(screen, self.farge, (self.x, self.y), self.radius)
 
     def oppdater(self):
         self.x += self.dx 
@@ -45,7 +48,7 @@ class Ball:
 
 
 ball1 = Ball(farge=BLUE, radius=40, x=50, y=100, dx=5, dy=3)
-
+ball2 = Ball(farge=GREEN, radius=20, x=350, y=200, dx=-5, dy=3)
 
 
 running = True
@@ -61,10 +64,11 @@ while running:
     screen.fill(WHITE)
 
     # Tegn ballen:
-    # TODO: Lag en funksjon for dette: ball1.tegn(screen)
-    pg.draw.circle(screen, ball1.farge, (ball1.x, ball1.y), ball1.radius)
+    ball1.tegn(screen)
+    ball2.tegn(screen)
     # Flytt ballen:
     ball1.oppdater()
+    ball2.oppdater()
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()
