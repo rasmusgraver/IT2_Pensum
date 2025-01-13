@@ -8,7 +8,7 @@ YELLOW = (200, 200 , 0)
 
 # Definerer størrelsen på pygame-vinduet:
 WIDTH = 300
-HEIGHT = 500
+HEIGHT = 300
 SIZE = (WIDTH, HEIGHT)
 
 # Definerer Frames Per Second:

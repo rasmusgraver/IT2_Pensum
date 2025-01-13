@@ -10,7 +10,7 @@ clock = pg.time.Clock()
 screen = pg.display.set_mode(SIZE)
 
 
-ball = Ball(farge=YELLOW, radius=10, x=50, y=HEIGHT-100, dx=3, dy=-7)
+ball = Ball(farge=YELLOW, radius=10, x=50, y=100, dx=3, dy=-3)
 pad = Pad(WHITE, 100, HEIGHT-40, 40, PAD_HOYDE, PAD_FART)
 
 running = True
@@ -29,12 +29,14 @@ while running:
     # TEST: Hva skjer om vi fjerner denne linja?
     screen.fill(BLACK)
 
-
+    pad.oppdater()
     ball.oppdater()
+    ball.kollisjon_med_pad(pad)
+    ball.game_over()
+
+    pad.tegn(screen)
     ball.tegn(screen)
 
-    pad.oppdater()
-    pad.tegn(screen)
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()

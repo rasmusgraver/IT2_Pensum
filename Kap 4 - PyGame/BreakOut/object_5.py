@@ -1,5 +1,6 @@
 import pygame as pg
 from constants_5 import *
+from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT)
 
 
 class Ball:
@@ -22,7 +23,8 @@ class Ball:
         # Sjekk om vi kolliderer i veggen:
         if self.x < self.radius or self.x > WIDTH - self.radius:
             self.dx = -self.dx
-        if self.y < self.radius or self.y > HEIGHT - self.radius:
+        # MERK: Har fjernet sjekk med "spretting" i bunn (y == HEIGHT)
+        if self.y < self.radius:
             self.dy = -self.dy
 
         # Sørg for at vi ikke blir "stuck" i veggen
@@ -37,9 +39,20 @@ class Ball:
             self.x = WIDTH - self.radius
         if self.y < self.radius:
             self.y = self.radius
-        if self.y > HEIGHT - self.radius:
-            self.y = HEIGHT -self.radius
 
+    def kollisjon_med_pad(self, pad):
+        """ Detekter om vi "kolliderer" med padden """
+        if (self.y + self.radius > pad.y 
+            and self.y + self.radius < pad.y + pad.hoyde
+            and self.x > pad.x and self.x < pad.x + pad.bredde):
+            # Sprett oppover:
+            self.dy = -self.dy
+
+    def game_over(self):
+        if self.y > HEIGHT:
+            # Stop ballen for å vise game over:
+            self.dy = 0
+            self.dx = 0
 
 
 class Pad:
@@ -57,7 +70,11 @@ class Pad:
 
 
     def oppdater(self):
-        # TODO: Oppdater self.x med self.fart avhengig av piltaster trykket
-        pass
+        # Henter en liste med status for alle tastatur-taster
+        trykkede_taster = pg.key.get_pressed()
+        if trykkede_taster[K_LEFT] and self.x > 0:
+            self.x -= self.fart
+        if trykkede_taster[K_RIGHT] and self.x < WIDTH - self.bredde:
+            self.x += self.fart
 
 
