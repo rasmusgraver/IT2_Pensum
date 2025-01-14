@@ -1,20 +1,18 @@
 import pygame as pg
 from constants import *
-
+# from object_5 import Ball, Pad
 
 # Start opp PyGame:
 pg.init()
 clock = pg.time.Clock()
 screen = pg.display.set_mode(SIZE)
 
-# Henter inn tekst, bilder, og spilleren:
 # Merk: Kan ikke laste inn font og bilder før vi har gjort pg.init:
 import tekst
 from bilder import *
 from player import Player
 
-
-player = Player(200, 100)
+player = Player(100, 100)
 
 score = 10
 running = True
@@ -29,14 +27,13 @@ while running:
     screen.fill(BLACK)
 
     # Tegner bakgrunnsbildet:
-
+    screen.blit(bg_image, (0, 0))
 
     # Skriver tekst på skjermen:
-    # TODO: Skriv inn scoren som en tekst øverst på skjermen (bruk aunivers)
+    tekst.skriv_tekst(screen, 10, 10, "Score: " + str(score), WHITE)
 
-
-    # Flytter og tegner spilleren:
-
+    player.move()
+    player.draw(screen)
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()
