@@ -5,4 +5,5 @@ import pygame as pg
 font = pg.font.SysFont("Arial", 32)
 
 def skriv_tekst(screen, x, y, tekst, farge):
-    pass
+    bilde = font.render(tekst, True, farge)
+    screen.blit(bilde, (x, y))

@@ -26,16 +26,18 @@ while running:
             running = False
 
     clock.tick(FPS)
-    screen.fill(BLACK)
+    # screen.fill(BLACK)
 
     # Tegner bakgrunnsbildet:
-
+    screen.blit(bg_image, (0, 0))
 
     # Skriver tekst på skjermen:
-    # TODO: Skriv inn scoren som en tekst øverst på skjermen (bruk aunivers)
+    tekst.skriv_tekst(screen, 100, 40, f"Din score er: {score}", WHITE)
 
 
     # Flytter og tegner spilleren:
+    player.move()
+    player.draw(screen)
 
 
     # Oppdater skjermen for å vise endringene:

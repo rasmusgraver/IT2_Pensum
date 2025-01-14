@@ -16,6 +16,5 @@ class Player:
         # TODO: Flytt spilleren ut i fra hvilke taster som er trykket
 
     def draw(self, screen):
-        # TODO: Tegn spilleren (bildet link_)
-        pass
+        screen.blit(self.image, (self.x, self.y) )
 
