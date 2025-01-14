@@ -13,8 +13,9 @@ class Player:
 
     def move(self):
         keys_pressed = pg.key.get_pressed()
-        # TODO
+        # TODO: Flytt spilleren ut i fra hvilke taster som er trykket
 
     def draw(self, screen):
+        # TODO: Tegn spilleren (bildet link_)
         pass
 
