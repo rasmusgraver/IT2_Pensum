@@ -5,12 +5,8 @@ def handle_collission(mario, goomba):
     if goomba.dead or mario.dead:
         # Hvis en av de er døde allerede, så sjekker vi ikke...
         return
-    mario_rect = mario.image.get_rect(topleft=(mario.x, mario.y))
+    mario_rect = mario.image.get_rect()
     goomba_rect = goomba.image.get_rect()
-    goomba_rect.x = goomba.x
-    goomba_rect.y = goomba.y
-    if mario_rect.colliderect(goomba_rect):
-        if mario.y < goomba.y and mario.dy > 0:
-            goomba.dead = True
-        else:
-            mario.dead = True
+    # TODO: Les om rect.colliderect (google it)
+    # TODO: Disse "rect" objektene er plassert på (0,0) - du må "dytte dem" på rett plass
+    #       for at colliderect skal fungere

@@ -7,6 +7,8 @@ class Mario(Character):
 
     def __init__(self, x, y):
         super().__init__(x, y, mario_image)
+        # Dytt Mario ned til floor:
+        self.y = FLOOR - self.height
 
     def move(self):
         if not self.dead:

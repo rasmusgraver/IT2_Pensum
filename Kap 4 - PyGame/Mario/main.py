@@ -1,6 +1,5 @@
 import pygame as pg
 from constants import *
-# from object_5 import Ball, Pad
 
 # Start opp PyGame:
 pg.init()
@@ -16,7 +15,7 @@ from goomba import create_goomba
 import collission
 
 mario = Mario(200, 100)
-goomba = create_goomba()
+# TODO goomba = create_goomba()
 
 score = 10
 running = True
@@ -35,18 +34,13 @@ while running:
     # Skriver tekst på skjermen:
     tekst.skriv_tekst(screen, 100, 40, f"Din score er: {score}", farge=WHITE, bakgrunnsfarge=BLACK)
 
-
     # Flytter og tegner spilleren, og andre objekter:
-    goomba.move()
-    goomba.draw(screen)
     mario.move()
     mario.draw(screen)
 
-    collission.handle_collission(mario, goomba)
+    # TODO: collission.handle_collission(mario, goomba)
 
-    if not mario.dead and (goomba.x < 0 or goomba.y > HEIGHT):
-        goomba = create_goomba()
-        score += 10
+    # TODO: Start en ny goomba hvis den er død eller har kommet til at x<0
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()
