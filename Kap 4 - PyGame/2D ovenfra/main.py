@@ -32,7 +32,7 @@ while running:
     screen.blit(bg_image, (0, 0))
 
     # Skriver tekst på skjermen:
-    tekst.skriv_tekst(screen, 100, 40, f"Din score er: {score}", WHITE)
+    tekst.skriv_tekst(screen, 100, 40, f"Din score er: {score}", farge=WHITE, bakgrunnsfarge=BLACK)
 
 
     # Flytter og tegner spilleren:
