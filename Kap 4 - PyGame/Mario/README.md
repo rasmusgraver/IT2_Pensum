@@ -1,2 +1,3 @@
-Et lite Mario spill. Foreløpig bare med litt random movements. 
-Kanskje kommer det noen Goombas etterhvert? 
+Et lite Mario spill. 
+Bruk piltaster for å bevege og hoppe
+Prøv å unngå goombas!
