@@ -11,10 +11,10 @@ screen = pg.display.set_mode(SIZE)
 # Merk: Kan ikke laste inn font og bilder før vi har gjort pg.init:
 import tekst
 from bilder import *
-from player import Player
+from mario import Mario
 
 
-player = Player(200, 100)
+mario = Mario(200, 100)
 
 score = 10
 running = True
@@ -36,8 +36,8 @@ while running:
 
 
     # Flytter og tegner spilleren:
-    player.move()
-    player.draw(screen)
+    mario.move()
+    mario.draw(screen)
 
 
     # Oppdater skjermen for å vise endringene:
