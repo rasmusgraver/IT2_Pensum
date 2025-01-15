@@ -5,9 +5,7 @@ def handle_collission(mario, goomba):
     if goomba.dead or mario.dead:
         # Hvis en av de er døde allerede, så sjekker vi ikke...
         return
-    mario_rect = mario.image.get_rect()
-    mario_rect.x = mario.x
-    mario_rect.y = mario.y
+    mario_rect = mario.image.get_rect(topleft=(mario.x, mario.y))
     goomba_rect = goomba.image.get_rect()
     goomba_rect.x = goomba.x
     goomba_rect.y = goomba.y
