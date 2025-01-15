@@ -16,7 +16,7 @@ class Mario(Character):
             if keys_pressed[pg.K_LEFT] and self.x > 0:
                 self.x -= MARIO_SPEED
                 self.image = mario_image_left
-            if keys_pressed[pg.K_RIGHT] and self.x < WIDTH:
+            if keys_pressed[pg.K_RIGHT] and self.x < WIDTH - self.width:
                 self.x += MARIO_SPEED
                 self.image = mario_image
             if keys_pressed[pg.K_UP]:

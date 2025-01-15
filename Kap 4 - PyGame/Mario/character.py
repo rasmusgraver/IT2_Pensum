@@ -10,6 +10,7 @@ class Character:
         self.dy = 0
         self.image = image
         self.height = self.image.get_height()
+        self.width = self.image.get_width()
         self.dead = False
 
     def move(self):
