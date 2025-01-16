@@ -14,13 +14,17 @@ class Character:
         self.dead = False
 
     def move(self):
-        # TODO: Fart i y-retning endrer seg med gravitasjonen:
+        # Fart i y-retning endrer seg med gravitasjonen:
+        self.dy += GRAVITY
 
-        # TODO: Og posisjon i y-retning endrer seg med y-farten:
+        # Og posisjon i y-retning endrer seg med y-farten:
+        self.y += self.dy
 
-        # TODO: Når truffet gulvet, så stopper fallet: (med mindre man er død)
-
-        return
+        # Når truffet gulvet, så stopper fallet: (med mindre man er død)
+        # Hvis du er død, så fortsetter du å falle (ut av skjermen)
+        if not self.dead and self.y > FLOOR - self.height:
+            self.dy = 0
+            self.y = FLOOR - self.height
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))

@@ -15,9 +15,9 @@ from goomba import create_goomba
 import collission
 
 mario = Mario(200, 100)
-# TODO goomba = create_goomba()
+goomba = create_goomba()
 
-score = 10
+score = 0
 running = True
 while running:
 
@@ -37,10 +37,15 @@ while running:
     # Flytter og tegner spilleren, og andre objekter:
     mario.move()
     mario.draw(screen)
+    goomba.move()
+    goomba.draw(screen)
 
-    # TODO: collission.handle_collission(mario, goomba)
+    collission.handle_collission(mario, goomba)
 
-    # TODO: Start en ny goomba hvis den er død eller har kommet til at x<0
+    # Start en ny goomba hvis den er død eller har kommet til at x<0
+    if goomba.y > FLOOR or goomba.x < 0:
+        goomba = create_goomba()
+        score += 10
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()
