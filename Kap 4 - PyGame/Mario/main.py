@@ -14,7 +14,7 @@ from mario import Mario
 from goomba import create_goomba
 import collission
 
-mario = Mario(200, 100)
+mario = Mario()
 goomba = create_goomba()
 
 score = 0
@@ -43,7 +43,7 @@ while running:
     collission.handle_collission(mario, goomba)
 
     # Start en ny goomba hvis den er død eller har kommet til at x<0
-    if goomba.y > FLOOR or goomba.x < 0:
+    if goomba.y > HEIGHT or goomba.x < 0:
         goomba = create_goomba()
         score += 10
 

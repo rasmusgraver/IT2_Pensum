@@ -5,10 +5,11 @@ from character import Character
 
 class Mario(Character):
 
-    def __init__(self, x, y):
+    def __init__(self):
+        # Mario starter nede på floor:
+        x = 200
+        y = FLOOR - self.height
         super().__init__(x, y, mario_image)
-        # Dytt Mario ned til floor:
-        self.y = FLOOR - self.height
 
     def move(self):
         if not self.dead:
