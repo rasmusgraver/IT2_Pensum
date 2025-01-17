@@ -1,6 +1,6 @@
 import pygame as pg
-from constants_5 import *
-from object_5 import Ball, Pad
+from constants import *
+from object import Ball, Pad
 
 # Start opp PyGame:
 pg.init()
@@ -11,7 +11,7 @@ screen = pg.display.set_mode(SIZE)
 
 
 ball = Ball(farge=YELLOW, radius=10, x=50, y=100, dx=3, dy=-3)
-pad = Pad(WHITE, 100, HEIGHT-40, 40, PAD_HOYDE, PAD_FART)
+pad = Pad(farge=WHITE, x=100, y=HEIGHT-40, bredde=PAD_BREDDE, hoyde=PAD_HOYDE, fart=PAD_FART)
 
 running = True
 

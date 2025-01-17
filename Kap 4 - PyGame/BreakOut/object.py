@@ -1,6 +1,5 @@
 import pygame as pg
-from constants_5 import *
-from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT)
+from constants import *
 
 
 class Ball:
@@ -47,6 +46,8 @@ class Ball:
             and self.x > pad.x and self.x < pad.x + pad.bredde):
             # Sprett oppover:
             self.dy = -self.dy
+            # "Dytt ballen over padden" (unngå at ballen "fanges i padden")
+            self.y = pad.y - self.radius
 
     def game_over(self):
         if self.y > HEIGHT:
@@ -72,9 +73,9 @@ class Pad:
     def oppdater(self):
         # Henter en liste med status for alle tastatur-taster
         trykkede_taster = pg.key.get_pressed()
-        if trykkede_taster[K_LEFT] and self.x > 0:
+        if trykkede_taster[pg.K_LEFT] and self.x > 0:
             self.x -= self.fart
-        if trykkede_taster[K_RIGHT] and self.x < WIDTH - self.bredde:
+        if trykkede_taster[pg.K_RIGHT] and self.x < WIDTH - self.bredde:
             self.x += self.fart
 
 

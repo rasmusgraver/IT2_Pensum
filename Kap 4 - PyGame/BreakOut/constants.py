@@ -14,5 +14,6 @@ SIZE = (WIDTH, HEIGHT)
 # Definerer Frames Per Second:
 FPS = 60
 
+PAD_BREDDE = 65
 PAD_HOYDE = 10
 PAD_FART = 5
