@@ -6,10 +6,11 @@ from character import Character
 class Mario(Character):
 
     def __init__(self):
-        # Mario starter nede på floor:
         x = 200
-        y = FLOOR - self.height
+        y = FLOOR # Mario starter nede på floor
         super().__init__(x, y, mario_image)
+        # Dytt ham opp like mye som han er høy (kan ikke bruke self.height før super_init...)
+        y = FLOOR - self.height
 
     def move(self):
         if not self.dead:
