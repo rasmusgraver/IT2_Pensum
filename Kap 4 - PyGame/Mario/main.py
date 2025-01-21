@@ -12,10 +12,12 @@ import tekst
 from bilder import *
 from mario import Mario
 from goomba import create_goomba
+from bowser import create_bowser
 import collission
 
 mario = Mario()
 goomba = create_goomba()
+bowser = None
 
 score = 0
 running = True
@@ -40,12 +42,23 @@ while running:
     goomba.move()
     goomba.draw(screen)
 
+    if bowser:
+        bowser.move()
+        bowser.draw(screen)
+
     collission.handle_collission(mario, goomba)
+
 
     # Start en ny goomba hvis den er død eller har kommet til at x<0
     if goomba.y > HEIGHT or goomba.x < 0:
+        # Øk scoren hvis goomba har falt ned av skjermen:
+        if goomba.y > HEIGHT:
+            score += 10
+
         goomba = create_goomba()
-        score += 10
+
+        if score > 40 and not bowser:
+            bowser = create_bowser()
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()
