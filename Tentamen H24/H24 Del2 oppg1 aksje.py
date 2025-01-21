@@ -8,6 +8,8 @@ def gjennomsnitt_av_liste(liste):
     return totalt / lengde
 
 # Tester
+print("-"*30)
+print("Tester gjennomsnitt_av_liste:")
 print(gjennomsnitt_av_liste([1, 2, 3]))              # Skal printe 2.0
 print(gjennomsnitt_av_liste([2, 2, 3]))              # Skal printe 2.333...
 print(gjennomsnitt_av_liste([1, 2, 3, 3, 2, 7, 6]))  # Skal printe 3.42857..
@@ -17,9 +19,9 @@ filnavn = "DataFiler/aksjekurs.csv"
 with open(filnavn, encoding="utf-8-sig") as fil:
     filinnhold = csv.reader(fil, delimiter=";")
 
+    print("-"*30)
     overskrifter = next(filinnhold)
     print(overskrifter)
-
     print("-"*30)
 
     # Listene vi skal plotte:
@@ -29,14 +31,17 @@ with open(filnavn, encoding="utf-8-sig") as fil:
     labels = []
     ticks = []
 
+    i = 0
     for rad in filinnhold:
         datoer.append(rad[0])
         kurs_liste.append(float(rad[1]))
-        i = len(datoer)
-        # Lagrer hver 10ende til å bruke som "xticks":
+        # Lagrer hver 10ende til å bruke som "xticks"
+        # MERK: Det er en mer fancy/enklere måte å gjøre det på, som gjør
+        #       at vi ikke trenger å generere "labels" og "ticks" (se lenger ned i koden)
         if i%10 == 0:
             labels.append(rad[0])
             ticks.append(i)
+        i += 1
 
 
 # Oppg 1 c) Legg til rullerende gjennomsnitt: 
@@ -59,10 +64,11 @@ plt.ylabel("Kurs")
 plt.legend(loc="upper left")
 
 # Det blir for mange datoer: Bare vis hver 10ende:
-plt.xticks(ticks=ticks, labels=labels, rotation=90)
+# MERK: Det holder å gi med listen over labels:
+plt.xticks(labels, rotation=90)
 
-# (Fancy forslag fra ChatGPT (finner ticks og labels "her og nå"):)
-# plt.xticks(ticks=range(0, len(dato), 10), labels=dato[::10], rotation=90)
+# Fancy, og enklere, måte å skrive det på: Generer listen "her og nå":
+# plt.xticks(datoer[::10], rotation=90)
 
 # Tight layout gjør at vi får plass til å se etikettene på x-aksen (datoene)
 plt.tight_layout()
