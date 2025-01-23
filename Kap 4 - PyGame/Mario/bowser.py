@@ -7,6 +7,7 @@ class Bowser(Character):
     def __init__(self, x, y):
         super().__init__(x, y, bowser_img)
         self.vx = -BOWSER_SPEED
+        self.health = 5
 
     def move(self):
         self.x += self.vx

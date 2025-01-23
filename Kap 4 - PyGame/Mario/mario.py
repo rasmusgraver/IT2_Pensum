@@ -26,5 +26,6 @@ class Mario(Character):
         super().move()
 
     def jump(self):
-        self.dy = MARIO_JUMP
+        if self.dy == 0:
+            self.dy = MARIO_JUMP
 

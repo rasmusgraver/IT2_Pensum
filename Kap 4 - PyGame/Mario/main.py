@@ -41,12 +41,13 @@ while running:
     mario.draw(screen)
     goomba.move()
     goomba.draw(screen)
+    collission.handle_collission(mario, goomba)
 
     if bowser:
         bowser.move()
         bowser.draw(screen)
+        collission.handle_collission(mario, bowser)
 
-    collission.handle_collission(mario, goomba)
 
 
     # Start en ny goomba hvis den er død eller har kommet til at x<0
@@ -57,7 +58,9 @@ while running:
 
         goomba = create_goomba()
 
-        if score > 40 and not bowser:
+        if score > 40 and (not bowser or bowser.dead):
+            if bowser and bowser.dead:
+                score += 100
             bowser = create_bowser()
 
     # Oppdater skjermen for å vise endringene:

@@ -12,6 +12,7 @@ class Character:
         self.height = self.image.get_height()
         self.width = self.image.get_width()
         self.dead = False
+        self.health = 1
 
     def move(self):
         # Fart i y-retning endrer seg med gravitasjonen:
@@ -25,6 +26,11 @@ class Character:
         if not self.dead and self.y > FLOOR - self.height:
             self.dy = 0
             self.y = FLOOR - self.height
+
+    def looseLife(self):
+        self.health -= 1
+        if self.health <= 0:
+            self.dead = True
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
