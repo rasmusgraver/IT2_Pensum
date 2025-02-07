@@ -15,8 +15,8 @@ SKJERM_STR = (SKJERM_BREDDE, SKJERM_HOYDE)
 RUTE_STR = 80
 
 # Setter opp antall kolonner og ruter vi har:
-KOLONNER = SKJERM_BREDDE // RUTE_STR
-RADER = SKJERM_HOYDE // RUTE_STR
+ANT_X = SKJERM_BREDDE // RUTE_STR
+ANT_Y = SKJERM_HOYDE // RUTE_STR
 
 
 # Definerer Frames Per Second:
