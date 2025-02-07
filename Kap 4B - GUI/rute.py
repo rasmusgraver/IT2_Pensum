@@ -14,13 +14,13 @@ class Rute:
             pg.draw.rect(screen, self.farge, (self.x, self.y, RUTE_STR, RUTE_STR))
         else:
             # Angir en paramter til: Bredden på streken - da blir det uten fyll, bare en "tom rute":
-            pg.draw.rect(screen, self.farge, (self.x, self.y, RUTE_STR, RUTE_STR), 1)
+            pg.draw.rect(screen, self.farge, (self.x, self.y, RUTE_STR, RUTE_STR), 2)
 
     def oppdater(self):
         # TODO: Logikk om oppdatering i forhold til naboer osv
         if self.farge == SORT:
-            if self.x > SKJERM_BREDDE // 2:
-                self.farge = GUL
+            if (self.x // RUTE_STR + self.y // RUTE_STR) % 2:
+                self.farge = ROED
             else:
                 self.farge = BLAA
         else: 
