@@ -1,5 +1,4 @@
 
-
 # Definerer størrelsen på pygame-vinduet:
 WIDTH = 1024
 HEIGHT = 704
@@ -9,7 +8,10 @@ SIZE = (WIDTH, HEIGHT)
 FPS = 60
 
 # Definer andre konstanter som hastigheter osv her:
+RUTE_STR = 30
 
+ANT_X = WIDTH // RUTE_STR
+ANT_Y = HEIGHT // RUTE_STR
 
 # Noen farger vi kan bruke:
 WHITE = (255,255,255)
