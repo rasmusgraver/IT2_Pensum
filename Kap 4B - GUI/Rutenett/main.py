@@ -52,6 +52,9 @@ while running:
         for rad in brett:
             for rute in rad:
                 rute.oppdater(brett)
+        for rad in brett:
+            for rute in rad:
+                rute.neste_frame()
 
 
     # Tegn brettet for hver "frame":

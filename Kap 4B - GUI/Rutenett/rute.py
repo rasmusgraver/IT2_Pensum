@@ -6,6 +6,7 @@ class Rute:
         self.x = x
         self.y = y
         self.fyll = False
+        self.neste_fyll = False
 
     def __str__(self):
         return f"Jeg er er rute {self.x}, {self.y}"
@@ -30,4 +31,9 @@ class Rute:
             neste_x = self.x + 1
             if neste_x < ANT_X:
                 neste_rute = brett[neste_x][self.y]
-                neste_rute.fyll = True
+                neste_rute.neste_fyll = True
+
+
+    def neste_frame(self):
+        self.fyll = self.neste_fyll
+        self.neste_fyll = False
