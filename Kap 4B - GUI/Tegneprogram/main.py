@@ -33,6 +33,17 @@ clock = pg.time.Clock()
 
 brett = [[HVIT for k in range(KOLONNER)] for r in range(RADER)]
 
+def tegn_ruter():
+    for x in range(RADER):
+        for y in range(KOLONNER):
+            pass
+
+def tegn_palett():
+    for i in range(len(FARGER)):
+        farge = FARGER[i]
+        y = HOYDE - PALETTSTR
+        x = i * PALETTSTR
+        pg.draw.rect(skjerm, farge, (x, y, PALETTSTR, PALETTSTR))
 
 
 running = True
@@ -51,8 +62,8 @@ while running:
 
 
     # Fyll inn oppdatering og tegning av objektene her:
-
-
+    tegn_ruter()
+    tegn_palett()
 
     # Oppdater skjermen for å vise endringene:
     pg.display.update()
