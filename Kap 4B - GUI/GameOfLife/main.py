@@ -1,6 +1,7 @@
 import pygame as pg
 from constants import *
 from rute import Rute
+from pg_meny import Knapp, MENYFARGE
 
 # Start opp PyGame:
 pg.init()
@@ -9,6 +10,12 @@ screen = pg.display.set_mode(SIZE)
 
 
 # Her setter du opp objektene dine:
+knapper = []
+knapper.append(Knapp(MENY_XSTART, MENY_YSTART, "Pause"))
+knapper.append(Knapp(MENY_XSTART, MENY_YSTART + MENY_YAVSTAND, "Restart"))
+knapper.append(Knapp(MENY_XSTART, MENY_YSTART + MENY_YAVSTAND*2, "Blank ut"))
+
+
 brett = []
 for x in range(ANT_X):
     y_verdier = []
@@ -43,13 +50,18 @@ while running:
                         rute.fyll = False
         elif event.type == pg.MOUSEBUTTONDOWN:
             x_pos, y_pos = pg.mouse.get_pos()
-            print(f"Musklikk ({x_pos}, {y_pos})")
+
+            for knapp in knapper:
+                if knapp.rektangel.collidepoint( (x_pos, y_pos) ):
+                    print(f"Klikket på: {knapp.tekst}")
+                    
             x = x_pos // RUTE_STR
             y = y_pos // RUTE_STR
-            rute = brett[x][y]
-            print("Du klikket på rute", rute)
-            rute.klikk()
-            animasjons_teller = 0 # Reset animasjons-telleren når vi klikker på en rute
+            if x < ANT_X and y < ANT_Y:
+                rute = brett[x][y]
+                print("Du klikket på rute", rute)
+                rute.klikk()
+                animasjons_teller = 0 # Reset animasjons-telleren når vi klikker på en rute
 
 
     # Fyll inn oppdatering og tegning av objektene her:
@@ -70,6 +82,9 @@ while running:
     for rad in brett:
         for rute in rad:
             rute.tegn(screen)
+    
+    for knapp in knapper:
+        knapp.tegn(screen, MENYFARGE)
 
 
 
