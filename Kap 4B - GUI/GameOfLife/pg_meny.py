@@ -1,4 +1,5 @@
 import pygame as pg
+from constants import *
 
 # Farger
 TEKSTFARGE = (255, 255, 255)
@@ -25,12 +26,20 @@ class Knapp:
     self.rektangel = pg.Rect(
       self.xPosisjon, self.yPosisjon, self.bredde, self.hoyde
     )
+    self.farge = MENYFARGE
 
-  def tegn(self, vindu, farge):
-    pg.draw.rect(vindu, farge, self.rektangel)
+  def tegn(self, vindu):
+    pg.draw.rect(vindu, self.farge, self.rektangel)
     tekst = font.render(self.tekst, True, TEKSTFARGE)
     tekstRamme = tekst.get_rect(center=self.rektangel.center)
     vindu.blit(tekst, tekstRamme.topleft)
+
+  def toggleFarge(self):
+    self.farge = MENYFARGE if self.farge == RED else RED
+    #if self.farge == MENYFARGE:
+    #  self.farge = RED
+    #else:
+    #   self.farge = MENYFARGE
 
 class Nedtrekksliste:
   def __init__(self, xPosisjon, yPosisjon, alternativer):

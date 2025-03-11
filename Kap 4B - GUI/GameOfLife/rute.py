@@ -54,7 +54,9 @@ class Rute:
             self.neste_fyll = True
 
 
-
+    def nullstill(self):
+        self.fyll = False
+        self.neste_fyll = False
 
     def neste_frame(self):
         self.fyll = self.neste_fyll

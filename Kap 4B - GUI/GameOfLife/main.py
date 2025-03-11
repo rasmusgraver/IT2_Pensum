@@ -29,6 +29,7 @@ print(brett[0][0]) # "Jeg er rute (0,0)"
 print(brett[5][2]) # "Jeg er rute (5,2)"
 
 
+animasjon_running = True
 animasjons_teller = 0
 running = True
 while running:
@@ -54,7 +55,14 @@ while running:
             for knapp in knapper:
                 if knapp.rektangel.collidepoint( (x_pos, y_pos) ):
                     print(f"Klikket på: {knapp.tekst}")
-                    
+                    if knapp.tekst == "Pause":
+                        knapp.toggleFarge()
+                        animasjon_running = (knapp.farge == MENYFARGE)
+                    if knapp.tekst == "Blank ut":
+                        for rad in brett:
+                            for rute in rad:
+                                rute.nullstill()
+
             x = x_pos // RUTE_STR
             y = y_pos // RUTE_STR
             if x < ANT_X and y < ANT_Y:
@@ -65,7 +73,7 @@ while running:
 
 
     # Fyll inn oppdatering og tegning av objektene her:
-    if animasjons_teller > 10:
+    if animasjons_teller > 10 and animasjon_running:
         animasjons_teller = 0
         # Finn ut om "neste_fyll" skal være av/på:
         for rad in brett:
@@ -84,7 +92,7 @@ while running:
             rute.tegn(screen)
     
     for knapp in knapper:
-        knapp.tegn(screen, MENYFARGE)
+        knapp.tegn(screen)
 
 
 
