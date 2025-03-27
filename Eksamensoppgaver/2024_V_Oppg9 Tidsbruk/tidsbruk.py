@@ -5,22 +5,22 @@ filnavn = "DataFiler/05994_20240126-145813-json.json"
 
 def fiksInnrykk(data):
     # Rydd opp stygt tegn for inntrykk:
-    for tidsbruk in data:
-        for key in tidsbruk:
+    for ordbok in data:
+        for key in ordbok:
             if key == 'alle aktiviteter':
-                value = tidsbruk[key]
+                value = ordbok[key]
                 if not value[0].isalpha():
                     # print(f"{key} med value {value}")
-                    tidsbruk[key] = "-> " + value[2:]
+                    ordbok[key] = "-> " + value[2:]
 
 def filtrerData(data, filterKey, filterVerdi):
     nyData = []
-    for tidsbruk in data:
-        for key in tidsbruk:
-            value = tidsbruk[key]
+    for ordbok in data:
+        for key in ordbok:
+            value = ordbok[key]
             if key == filterKey and value == filterVerdi:
                 # Legg til "hele denne bolken" i den nye lista
-                nyData.append(tidsbruk)
+                nyData.append(ordbok)
 
     return nyData
 
