@@ -5,24 +5,24 @@ filnavn = "DataFiler/05994_20240126-145813-json.json"
 
 def fiksInnrykk(data):
     # Rydd opp stygt tegn for inntrykk:
-  for tidsbruk in data:
-      for key in tidsbruk:
-          if key == 'alle aktiviteter':
-              value = tidsbruk[key]
-              if not value[0].isalpha():
-                  # print(f"{key} med value {value}")
-                  tidsbruk[key] = "-> " + value[2:]
+    for tidsbruk in data:
+        for key in tidsbruk:
+            if key == 'alle aktiviteter':
+                value = tidsbruk[key]
+                if not value[0].isalpha():
+                    # print(f"{key} med value {value}")
+                    tidsbruk[key] = "-> " + value[2:]
 
 def filtrerData(data, filterKey, filterVerdi):
-  nyData = []
-  for tidsbruk in data:
-      for key in tidsbruk:
-          value = tidsbruk[key]
-          if key == filterKey and value == filterVerdi:
-              # Legg til "hele denne bolken" i den nye lista
-              nyData.append(tidsbruk)
+    nyData = []
+    for tidsbruk in data:
+        for key in tidsbruk:
+            value = tidsbruk[key]
+            if key == filterKey and value == filterVerdi:
+                # Legg til "hele denne bolken" i den nye lista
+                nyData.append(tidsbruk)
 
-  return nyData
+    return nyData
 
 def printData(data):
     print("|" + "-"*66 + "|")
