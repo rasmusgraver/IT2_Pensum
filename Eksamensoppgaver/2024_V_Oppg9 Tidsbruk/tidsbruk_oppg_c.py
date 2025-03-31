@@ -70,8 +70,12 @@ def stolpeDiagram(data):
                 farger.append("red")
 
     #subplot(rader, kolonner, figurnr)
-    plt.subplot(2, 1, 1)
+    plt.subplot(1, 2, 1)
+    # plt.title("Tidsbruk 2000")
+    # plt.xlabel("Aktivitet")
+    # plt.ylabel("Tidsbruk")
     plt.bar(x_verdier, y_verdier, color=farger)
+    # plt.legend()
     # plt.xticks(x_verdier, rotation=45)
     plt.xticks(rotation=90, fontsize=6 )
     plt.tight_layout()
@@ -80,7 +84,6 @@ def stolpeDiagram(data):
 def sektorDiagram(data):
     x_verdier = []
     y_verdier = []
-    farger = []
     for ordbok in data:
         # Ta bare "topp-postene" her (sum-postene - "i alt"):
         if ordbok["alle aktiviteter"] != "I alt" \
@@ -89,12 +92,19 @@ def sektorDiagram(data):
             y_verdier.append(ordbok["Tidsbruk 2000 I alt"])
 
     #subplot(rader, kolonner, figurnr)
-    plt.subplot(2, 1, 2)
-    plt.pie(y_verdier, labels=x_verdier)
+    plt.subplot(1, 2, 2)
+    # plt.title("Tidsbruk 2000")
+    # plt.xlabel("Aktivitet")
+    # plt.ylabel("Tidsbruk")
+    plt.pie(y_verdier, labels=None)
     # plt.legend()
+    # plt.legend(loc="upper left")
+    plt.legend(x_verdier, loc="lower right", fontsize=6)
+
     # plt.xticks(x_verdier, rotation=45)
     # plt.xticks(rotation=90, fontsize=6 )
-    plt.tight_layout()
+    # plt.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
+    # plt.tight_layout()
     plt.show()
 
 
