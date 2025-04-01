@@ -20,12 +20,12 @@ class Batteri:
             self.energiNivå += energi
 
     def brukEnergi(self, energi):
-        if type(energi).__name__ != "int" and type(energi).__name__ != "float":
+        if not isinstance(energi, int) and not isinstance(energi, float):
             # Samme som på ladOpp funksjonen: 3 måter å håndtere feil på:
             # 1: Print en feilmelding
             # 2: Raise Exception
-            # 3: Returner en streng som forklarer feilen
-            return "Feil datatype"
+            raise ValueError("Feil datatype")
+            # 3: Returner en streng som forklarer feilen return "Feil datatype"
         self.energiNivå -= energi
 
     def visEnergiNivå(self):

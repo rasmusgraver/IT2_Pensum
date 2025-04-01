@@ -15,14 +15,21 @@ if (batteri.visEnergiNivå() != 20):
 
 batteri.brukEnergi(0.1)
 if (batteri.visEnergiNivå() != 19.9):
-    print(f"Batteriet burde ha vært 19.1 nå, men var {batteri.visEnergiNivå()}")
+    print(f"Batteriet burde ha vært 19.9 nå, men var {batteri.visEnergiNivå()}")
     antallFeil += 1
 
 
 # Tester med feil datatype
-forventetFeil = batteri.brukEnergi("asv")
-if forventetFeil != "Feil datatype":
-    print(f"Forventet en feil med feil datatype, men fikk {forventetFeil}")
+try:
+    batteri.brukEnergi("asv")
+    # Skal ikke komme hit, fordi vi har en feil datatype:
     antallFeil += 1
+    print("Skulle fått feil datatype på brukEnergi() med string")
+except ValueError as forventetFeil:
+    print(f"Fikk forventet feil: {forventetFeil}")
+except Exception as uventetFeil:
+    antallFeil += 1
+    print(f"Fikk en uventet feil: {uventetFeil} av type {type(uventetFeil)}")
+
 
 print(f"Ferdig med testene, med totalt {antallFeil} feil")
