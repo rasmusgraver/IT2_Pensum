@@ -14,27 +14,6 @@ def fiksInnrykk(data):
                     # print(f"{key} med value {value}")
                     ordbok[key] = "-> " + value[2:]
 
-def fiksMinuttTilDesimaltall(data):
-    # Det som kommer etter punktum i tidsbruk er antall minutter
-    # => Gjør det om til et desimaltall
-    for ordbok in data:
-        for key in ordbok:
-            if key == 'Tidsbruk 2000 I alt':
-                tid = str(ordbok[key])
-                tidsArr = tid.split(".")
-                time = tidsArr[0]
-                # MERK: Her bruker jeg ints og sammenslåing av strings
-                # Kunne alternativt ha regnet ut desimal som 0 komma .....
-                # og så regnet timer + desimal
-                desimal = 0
-                if len(tidsArr) == 2:
-                    minutt = int(tidsArr[1])
-                    desimal = round(100*minutt/60)
-                # (time, minutt) = tid.split(".")
-                # print(key, time, desimal)
-                ordbok[key] = float(str(time) + "." + str(desimal))
-
-
 def filtrerData(data, filterKey, filterVerdi):
     nyData = []
     for ordbok in data:
@@ -45,6 +24,29 @@ def filtrerData(data, filterKey, filterVerdi):
                 nyData.append(ordbok)
 
     return nyData
+
+
+def fiksMinuttTilDesimaltall(data):
+    # Det som kommer etter punktum i tidsbruk er antall minutter
+    # => Gjør det om til et desimaltall
+    for ordbok in data:
+        for key in ordbok:
+            if key == 'Tidsbruk 2000 I alt':
+                tid = str(ordbok[key])
+                tidsArr = tid.split(".")
+                time = tidsArr[0]
+                # MERK: Her bruker jeg int og sammenslåing av strings
+                # Kunne alternativt ha regnet ut desimal som 0 komma noe
+                # og så regnet timer + desimal "matematisk"
+                desimal = 0
+                if len(tidsArr) == 2:
+                    minutt = int(tidsArr[1])
+                    desimal = round(100*minutt/60)
+                # (time, minutt) = tid.split(".")
+                # print(key, time, desimal)
+                # Legger sammen vha "string concatenation" (slår sammen to strenger):
+                ordbok[key] = float(str(time) + "." + str(desimal))
+
 
 def printData(data):
     print("|" + "-"*66 + "|")
@@ -96,14 +98,10 @@ def sektorDiagram(data):
     # plt.title("Tidsbruk 2000")
     # plt.xlabel("Aktivitet")
     # plt.ylabel("Tidsbruk")
+    # MERK: Kan sette labels=None for å droppe å vise dem på sektordiagrammet
+    # Legger til labels under:
     plt.pie(y_verdier, labels=None)
-    # plt.legend()
-    # plt.legend(loc="upper left")
     plt.legend(x_verdier, loc="lower right", fontsize=6)
-
-    # plt.xticks(x_verdier, rotation=45)
-    # plt.xticks(rotation=90, fontsize=6 )
-    # plt.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
     # plt.tight_layout()
     plt.show()
 
@@ -135,6 +133,6 @@ while running:
         stolpeDiagram(filtData)
         sektorDiagram(filtData)
 
-    # Om man bare vil kjøre 1 gang i loopen:
+    # Fant ut det var bedre å bare kjøre én og én gang:
     running = False
 
