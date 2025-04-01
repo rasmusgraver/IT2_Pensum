@@ -14,7 +14,7 @@ print(f"Antall keys: {len(bokstavDict)}")
 # Sorter etter antall forekomster, og hent ut top 10
 # ... og plot dem som søylediagram! 
 
-# Denne hjalp ikke: (Men nyttig å vite om...)
+# Denne trengte vi ikke i denne oppgaven: (Men nyttig å vite om...)
 # Sorterer på keys: sortertDict = dict(sorted(bokstavDict.items()))
 
 # Sorterer på values: (Den er jo ganske "gresk", men nå har vi den i verktøykassa vår)
@@ -23,12 +23,15 @@ sortertDict = dict(sorted(bokstavDict.items(), key=lambda item: item[1], reverse
 # NB!!: MERK!!! pprint sorterer dict på keys av seg selv! Så her må vi bruke "vanlig print"!!
 # print(sortertDict)
 
-# Dette fungerer ikke - fungerer bare på lister! top10 = sortertDict[:9]
-# Må bruke mer fancy google stuff:
-from itertools import islice
-top10 = dict(islice(sortertDict.items(), 10))
+# Kan bruke mer fancy google stuff:
+# from itertools import islice
+# top10 = dict(islice(sortertDict.items(), 10))
 
-print("TOP 10")
+# ELLER: Konverter til en liste og så ta de 10 første:
+bokstavListe = list(sortertDict.items())
+top10 = dict(bokstavListe[:10])
+
+print("TOP 10 - Antall: ", len(top10))
 print("="*20)
 print(top10)
 
@@ -43,8 +46,8 @@ print(f"Total bokstav forekomst: {totalForekomst}")
 
 # Gjør om vår top 10 til relativ frekvens:
 for key in top10:
-  value = top10[key]
-  relativForekomst = value/totalForekomst
+  antall = top10[key]
+  relativForekomst = antall/totalForekomst
   # Lagrer ny verdi på denne nøkkelen:
   top10[key] = round(relativForekomst*100, 1) # Ganger med hundre for prosent
 
@@ -57,9 +60,20 @@ print(top10)
 # Og plotter bar-diagram av det:
 import matplotlib.pyplot as plt
 
-# Lager diagram som viser oversikt over antall turer for hver ukedag
-plt.bar(top10.keys(), top10.values(), color="green")
+# plt.bar(top10.keys(), top10.values(), color="green")
+# Legg til verdien på stolpene:
+# for i, v in enumerate(top10.values()):
+#    plt.text(i, v - 1, str(v) + " %", ha='center', va='bottom', color="white", fontsize=6)
+# plt.xlabel("bokstav")
+# plt.ylabel("Relativ frekvens i %")
+
+# Vi kunne også lagt bar horisontalt:
+plt.barh(list(top10.keys()), list(top10.values()), color="green")
+# Legg til verdien på stolpene:
+for i, v in enumerate(top10.values()):
+    plt.text(v-0.5, i-0.1, str(v) + " %", ha='center', va='bottom', color="white", fontsize=6)
+plt.ylabel("bokstav")
+plt.xlabel("Relativ frekvens i %")
+
 plt.title("Frekvensanalyse norske bokstaver")
-plt.xlabel("bokstav")
-plt.ylabel("Relativ frekvens (%)")
 plt.show()
