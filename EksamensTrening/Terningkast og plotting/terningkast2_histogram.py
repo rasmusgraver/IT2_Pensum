@@ -20,6 +20,10 @@ for i in range(5000):
 
 # print(restultater)
 
-plt.hist(restultater, bins=9, edgecolor='black')
+# Lag histogram:
+# Kan bruke density=True for å få frekvensen i stedet for antall kast
+plt.hist(restultater, bins=11, edgecolor='black', density=True)
+plt.xlabel('Sum av terningkast')
+plt.ylabel('Frekvens')
 plt.title('Histogram av terningkast')
 plt.show()

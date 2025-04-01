@@ -21,6 +21,8 @@ for i in range(100):
     results[kast] += 1
 
 
+# Kjapp/Fancy måte å lage en liste med verdiene 1,2,3,4,5,6:
 kastVerdier = list(range(1,7))
+
 plt.bar(kastVerdier, results)
 plt.show()
