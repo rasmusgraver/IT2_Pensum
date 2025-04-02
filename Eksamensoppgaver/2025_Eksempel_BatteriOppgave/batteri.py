@@ -20,7 +20,7 @@ class Batteri:
             self.energiNivå += energi
 
     def brukEnergi(self, energi):
-        if not isinstance(energi, int) and not isinstance(energi, float):
+        if not isinstance(energi, (int, float)):
             # Samme som på ladOpp funksjonen: 3 måter å håndtere feil på:
             # 1: Print en feilmelding
             # 2: Raise Exception
