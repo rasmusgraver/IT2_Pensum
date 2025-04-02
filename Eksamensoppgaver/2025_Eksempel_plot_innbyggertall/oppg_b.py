@@ -13,7 +13,7 @@ def printOverskrifter():
 
 def printRad(rad):
     vekst = ".."
-    if rad[0] != ".." and rad[1] != ".." and rad[2] != "..":
+    if rad[1] != ".." and rad[2] != ".." and rad[3] != "..":
         # Formelen er:    Folkevekst = fødsler+innflytt-utflytt
         vekst = int(rad[1]) + int(rad[2]) - int(rad[3])
     # Bruker > for å høyrestille
