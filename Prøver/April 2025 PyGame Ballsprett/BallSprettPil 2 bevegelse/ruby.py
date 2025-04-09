@@ -15,7 +15,7 @@ class Ruby:
 
     def oppdater(self):
 
-        # Bevegelse:
+        # Bevegelse i y-retning:
         self.dy += GRAVITY
         self.y += self.dy
 
