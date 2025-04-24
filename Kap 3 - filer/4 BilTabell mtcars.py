@@ -30,17 +30,18 @@ for bil in data:
         print( "HP: " + str(bil["hp"]) + ": " + bil["model"] )
         biler.append(bil)
     # Legger til i ant_cyl (for alle biler):
-    # Hvis vi har en ny "antall cylindre", så opprett den i ant_cyl:
+    # Hvis vi har en ny "antall cylindre", så opprett den i ant_cyl ordboka:
     if not bil["cyl"] in ant_cyl:
         ant_cyl[bil["cyl"]] = 0
-    # Øk antall for den aktuelle "antall cylindre":
+    # Øk antall for den aktuelle "antall cylindre": (nå som vi vet at den finnes i ordboka)
     ant_cyl[bil["cyl"]] += 1
 
 
-# Bruker denne til sorted funksjonen
+# Bruker denne til sorted funksjonen under:
 def sort_key(b):
 	return b["hp"]
 
+# NB: Lær dette! Se så elegant det er! :)
 biler_sortert = sorted(biler, key=sort_key, reverse=False)
 
 print("SORTED")
@@ -48,11 +49,17 @@ print("="*30)
 for bil in biler_sortert:
     print("HP: " + str(bil["hp"]) + ": " + bil["model"] )
 
+
+# ============================================
+# over til antall cylindere og sektor-diagram:
+# ============================================
+
+# Returnerer den første verdien i tuple (som er antall sylindre):
 def sort_key_cyl(cyl):
-    # Returnerer den første verdien i tuple (som er antall sylindre):
     return cyl[0]
 
 # Sorter ant_cyl (ut i fra den første verdien - altså antall sylindre):
+# (Merk bruken av dict(sorted(...)) for å lage en ny ordbok med sorterte verdier)
 ant_cyl_sortert = dict(sorted(ant_cyl.items(), key=sort_key_cyl, reverse=False))
 
 # Lager et sektordiakgram/kakediagram med antall cylindre:
