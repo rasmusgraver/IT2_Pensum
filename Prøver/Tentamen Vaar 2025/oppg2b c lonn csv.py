@@ -7,10 +7,6 @@ filnavn = "DataFiler/manedslonn.csv"
 with open(filnavn, encoding="utf-8-sig") as fil:
     filinnhold = csv.reader(fil, delimiter=";")
 
-    # Skipper første linje:
-    # next(filinnhold)
-
-    # Bekrefter at kolonne 12 (11) er 2024:
     overskrift = next(filinnhold)
     aarstall = overskrift[2:12]
 
