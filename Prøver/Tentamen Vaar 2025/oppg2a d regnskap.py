@@ -17,15 +17,15 @@ with open(filnavn, encoding="utf-8-sig") as fil:
     for rad in filinnhold:
         # print(rad) # Debugging
         # Kjører gjennom hver rad i filen:
-        # print(f"Rad: {rad}") # Debugging
-        maaned = int(rad[0].split(".")[1]) - 1
+        # Finner måneds-indeksen fra første kolonnen:
+        maaneds_indeks = int(rad[0].split(".")[1]) - 1
 
         # Summerer opp for mat og strøm hver for seg:
         # Rad 0 er dato, rad 1 er type, rad 2 er beløp:
         if rad[1] == "mat":
-            mat[maaned] += int(rad[2])
+            mat[maaneds_indeks] += int(rad[2])
         elif rad[1] == "strøm":
-            strøm[maaned] += int(rad[2])
+            strøm[maaneds_indeks] += int(rad[2])
 
 # Skriver ut resultatet som et sektordiagram:
 periode = ""
